@@ -1,15 +1,14 @@
 language: java
 install: true
 
-
-env:
-  global:
-  - DISTRO_PATH=./target/dotto-distro-$DOTTO_VERSION
+# env:
+#   global:
+#   -
 
 script:
-  - mvn install
-  - mvn clean alfresco:run -Dmaven.alfresco.startTomcat=false
-  - export DOTTO_VERSION=$(mvn -q -Dexec.executable=echo -Dexec.args='${project.version}' --non-recursive exec:exec)
+  - export DISTRO_PATH=./target/dotto-distro-$(mvn -q -Dexec.executable=echo -Dexec.args='${project.version}' --non-recursive exec:exec)
+  - mvn clean install
+  - mvn alfresco:run -Dmaven.alfresco.startTomcat=false
   - mkdir -p $DISTRO_PATH
   - mv target/*.war $DISTRO_PATH
   - mv $DISTRO_PATH/platform.war $DISTRO_PATH/alfresco.war
