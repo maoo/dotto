@@ -6,13 +6,7 @@ install: true
 #   -
 
 script:
-  - export DISTRO_PATH=./target/dotto-distro-$(mvn -q -Dexec.executable=echo -Dexec.args='${project.version}' --non-recursive exec:exec)
   - mvn clean install
-  - mvn alfresco:run -Dmaven.alfresco.startTomcat=false
-  - mkdir -p $DISTRO_PATH
-  - mv target/*.war $DISTRO_PATH
-  - mv $DISTRO_PATH/platform.war $DISTRO_PATH/alfresco.war
-  - zip -r $DISTRO_PATH.zip $DISTRO_PATH
 
 cache:
   directories:
@@ -20,11 +14,18 @@ cache:
   - $HOME/.m2
 
 jdk:
-  # - oraclejdk8
   - openjdk11
 
 deploy:
-  provider: releases
-  api_key: "$GH_TOKEN"
-  file: "$DISTRO_PATH.zip"
-  skip_cleanup: true
+  # Deploy binaries to OpenShift
+  - provider: script
+    skip_cleanup: true
+    script: export DISTRO_PATH=./target/dotto-distro-$(mvn -q -Dexec.executable=echo -Dexec.args='${project.version}' --non-recursive exec:exec) && mvn alfresco:run -Dmaven.alfresco.startTomcat=false && mkdir -p $DISTRO_PATH && mv target/*.war $DISTRO_PATH && mv $DISTRO_PATH/platform.war $DISTRO_PATH/alfresco.war && zip -r $DISTRO_PATH.zip $DISTRO_PATH
+    on:
+      tags: true
+  - provider: releases
+    api_key: "$GH_TOKEN"
+    file: "$DISTRO_PATH.zip"
+    skip_cleanup: true
+    on:
+      tags: true
