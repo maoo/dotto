@@ -7,6 +7,10 @@ env:
 
 script:
   - mvn clean install
+  - mvn alfresco:run -Dmaven.alfresco.startTomcat=false
+  - mkdir -p $DISTRO_PATH && mv target/*.war $DISTRO_PATH
+  - mv $DISTRO_PATH/platform.war $DISTRO_PATH/alfresco.war
+  - zip -r $DISTRO_PATH.zip $DISTRO_PATH
 
 cache:
   directories:
@@ -17,12 +21,6 @@ jdk:
   - openjdk11
 
 deploy:
-  # Deploy binaries to OpenShift
-  - provider: script
-    skip_cleanup: true
-    script: mvn alfresco:run -Dmaven.alfresco.startTomcat=false && mkdir -p $DISTRO_PATH && mv target/*.war $DISTRO_PATH && mv $DISTRO_PATH/platform.war $DISTRO_PATH/alfresco.war && zip -r $DISTRO_PATH.zip $DISTRO_PATH
-    on:
-      tags: true
   - provider: releases
     api_key: "$GH_TOKEN"
     file: "$DISTRO_PATH.zip"
