@@ -19,7 +19,7 @@ public class DottoModel  {
 	public static final String INVOICE_STATUS_FAILED = "Failed";
 	public static final String INVOICE_STATUS_IN_PROGRESS = "In Progress";
 	public static final String INVOICE_STATUS_INVOICED = "Invoiced";
-	
+
 	public static final String ARCHIVE_STATUS_NOT_SUBMITTED = "Not submitted";
 	public static final String ARCHIVE_STATUS_FAILED = "Failed";
 	public static final String ARCHIVE_STATUS_IN_PROGRESS = "In Progress";

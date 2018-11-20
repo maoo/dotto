@@ -70,27 +70,27 @@ public class InvokeWebService extends ActionExecuterAbstractBase {
 
 			// Add the related aspect
 			this.nodeService.addAspect(
-				actionedUponNodeRef, 
+				actionedUponNodeRef,
 				QName.createQName(
-					DottoModel.NAMESPACE_DOTTO_CONTENT_MODEL, 
+					DottoModel.NAMESPACE_DOTTO_CONTENT_MODEL,
 					this.aspect), new HashMap<QName, Serializable>());
 
 			// Marking document with ws status in progress
 			properties.put(
 				QName.createQName(
-					DottoModel.NAMESPACE_DOTTO_CONTENT_MODEL, 
+					DottoModel.NAMESPACE_DOTTO_CONTENT_MODEL,
 					this.statusProp), this.inProgressStatus);
 			logger.debug(
-				"InvokeWebService - Status set to " + 
+				"InvokeWebService - Status set to " +
 				this.inProgressStatus);
 
 			// TODO - invoke web service
-			// String response = 
-			// 	new Date() + 
-			// 	" Response: " + 
+			// String response =
+			// 	new Date() +
+			// 	" Response: " +
 			// 	this.wsdlClient.getHelloPort();
-			String response = 
-				new Date() + 
+			String response =
+				new Date() +
 				" Response: hello world!";
 			logger.debug("InvokeWebService - Got Web Service response:");
 			logger.debug("WS Type: "+this.wsType);
@@ -99,14 +99,14 @@ public class InvokeWebService extends ActionExecuterAbstractBase {
 
 			responses.add(response);
 			properties.put(QName.createQName(
-					DottoModel.NAMESPACE_DOTTO_CONTENT_MODEL, 
+					DottoModel.NAMESPACE_DOTTO_CONTENT_MODEL,
 					this.responsesProp), responses);
 			logger.debug("InvokeWebService - Responses updated");
 			logger.info(
-				"InvokeWebService - WS " + 
-				this.wsType + "invoked on doc " + 
+				"InvokeWebService - WS " +
+				this.wsType + "invoked on doc " +
 				actionedUponNodeRef.toString());
-			
+
 			nodeService.setProperties(actionedUponNodeRef,properties);
 		} else {
 			// TODO - give some visual feedback to user
