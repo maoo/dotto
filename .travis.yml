@@ -1,0 +1,28 @@
+language: java
+install: true
+
+
+env:
+  global:
+  - DISTRO_PATH=./target/dotto-distro-$DOTTO_VERSION
+
+script:
+  - mvn install
+  - mvn clean alfresco:run -Dmaven.alfresco.startTomcat=false
+  - export DOTTO_VERSION=$(mvn -q -Dexec.executable=echo -Dexec.args='${project.version}' --non-recursive exec:exec)
+  - mkdir -p $DISTRO_PATH
+  - mv target/*.war $DISTRO_PATH
+  - mv $DISTRO_PATH/platform.war $DISTRO_PATH/alfresco.war
+  - zip -r $DISTRO_PATH.zip $DISTRO_PATH
+
+jdk:
+  # - oraclejdk8
+  - openjdk11
+
+deploy:
+  provider: releases
+  api_key: "$GH_TOKEN"
+  file: "$DISTRO_PATH.zip"
+  skip_cleanup: true
+  on:
+    tags: true
