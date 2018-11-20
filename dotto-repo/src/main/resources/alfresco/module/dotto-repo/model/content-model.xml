@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<model name="dotto:contentModel" xmlns="http://www.alfresco.org/model/dictionary/1.0">
+    <description>Dotto Document Model</description>
+    <author>Session Technologies</author>
+    <version>1.0</version>
+
+    <imports>
+        <import uri="http://www.alfresco.org/model/dictionary/1.0" prefix="d"/>
+        <import uri="http://www.alfresco.org/model/content/1.0" prefix="cm"/>
+        <import uri="http://www.alfresco.org/model/system/1.0" prefix="sys"/>
+    </imports>
+
+    <namespaces>
+        <namespace uri="https://session.it/dotto/model/content/1.0" prefix="dotto"/>
+    </namespaces>
+
+    <constraints>
+        <constraint name="dotto:invoiceStatusOptions" type="LIST">
+            <parameter name="allowedValues">
+                <list>
+                    <value></value>
+                    <value>Not submitted</value>
+                    <value>Failed</value>
+                    <value>In Progress</value>
+                    <value>Invoiced</value>
+                </list>
+            </parameter>
+        </constraint>
+        <constraint name="dotto:archiveStatusOptions" type="LIST">
+            <parameter name="allowedValues">
+                <list>
+                    <value></value>
+                    <value>Not submitted</value>
+                    <value>Failed</value>
+                    <value>In Progress</value>
+                    <value>Archived</value>
+                </list>
+            </parameter>
+        </constraint>
+    </constraints>
+
+    <aspects>
+        <aspect name="dotto:invoiceable">
+            <title>Dotto Invoiceable</title>
+            <description>Document involved in Dotto invoicing process</description>
+            <properties>
+                <property name="dotto:invoiceId">
+                    <type>d:text</type>
+                    <index enabled="true">
+                        <atomic>true</atomic>
+                        <stored>false</stored>
+                        <tokenised>false</tokenised>
+                    </index>
+                </property>
+                <property name="dotto:invoiceStatus">
+                    <type>d:text</type>
+                    <index enabled="true">
+                        <atomic>true</atomic>
+                        <stored>false</stored>
+                        <tokenised>false</tokenised>
+                    </index>
+                    <constraints>
+                        <constraint ref="dotto:invoiceStatusOptions"/>
+                    </constraints>
+                </property>
+                <property name="dotto:invoiceResponses">
+                    <type>d:text</type>
+                    <multiple>true</multiple>
+                    <index enabled="true">
+                        <atomic>true</atomic>
+                        <stored>false</stored>
+                        <tokenised>false</tokenised>
+                    </index>
+                </property>
+            </properties>
+        </aspect>
+
+        <aspect name="dotto:archivable">
+            <title>Dotto Invoiceable</title>
+            <description>Document involved in Dotto archiving process</description>
+            <properties>
+                <property name="dotto:archiveId">
+                    <type>d:text</type>
+                    <index enabled="true">
+                        <atomic>true</atomic>
+                        <stored>false</stored>
+                        <tokenised>false</tokenised>
+                    </index>
+                </property>
+                <property name="dotto:archiveStatus">
+                    <type>d:text</type>
+                    <index enabled="true">
+                        <atomic>true</atomic>
+                        <stored>false</stored>
+                        <tokenised>false</tokenised>
+                    </index>
+                    <constraints>
+                        <constraint ref="dotto:archiveStatusOptions"/>
+                    </constraints>
+                </property>
+                <property name="dotto:archiveResponses">
+                    <type>d:text</type>
+                    <multiple>true</multiple>
+                    <index enabled="true">
+                        <atomic>true</atomic>
+                        <stored>false</stored>
+                        <tokenised>false</tokenised>
+                    </index>
+                </property>
+            </properties>
+        </aspect>
+    </aspects>
+</model>

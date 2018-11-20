@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <artifactId>dotto-share</artifactId>
+    <name>Alfresco Share Module for Dotto</name>
+    <packaging>jar</packaging>
+    <description>Share Module for Dotto</description>
+
+    <parent>
+        <groupId>it.session</groupId>
+        <artifactId>dotto</artifactId>
+        <version>0.0.1</version>
+    </parent>
+
+    <properties>
+    </properties>
+
+    <!-- Following dependencies are needed for compiling Java code in src/main/java;
+         <scope>provided</scope> is inherited for each of the following;
+         for more info, please refer to alfresco-platform-distribution POM -->
+    <dependencies>
+        <!-- https://mvnrepository.com/artifact/javax.servlet/javax.servlet-api -->
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>javax.servlet-api</artifactId>
+            <version>3.1.0</version>
+            <scope>provided</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>${alfresco.groupId}</groupId>
+            <artifactId>share</artifactId>
+            <classifier>classes</classifier>
+        </dependency>
+
+        <dependency>
+            <groupId>org.alfresco.surf</groupId>
+            <artifactId>spring-surf-api</artifactId>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-assembly-plugin</artifactId>
+            </plugin>
+        </plugins>
+    </build>
+
+</project>

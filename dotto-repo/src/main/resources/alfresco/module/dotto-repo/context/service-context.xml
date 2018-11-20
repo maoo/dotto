@@ -1,0 +1,20 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+          http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+
+    <bean id="wsdl-client" class="it.session.dotto.client.WSDLClient"/>
+
+    <bean id="invoice-action" class="it.session.dotto.actions.InvokeWebService" parent="action-executer">
+        <constructor-arg index="0" ref="NodeService"/>
+        <constructor-arg index="1" value="invoice"/>
+        <constructor-arg index="2" ref="wsdl-client"/>
+    </bean>
+
+    <bean id="archive-action" class="it.session.dotto.actions.InvokeWebService" parent="action-executer">
+        <constructor-arg index="0" ref="NodeService"/>
+        <constructor-arg index="1" value="archive"/>
+        <constructor-arg index="2" ref="wsdl-client"/>
+    </bean>
+</beans>

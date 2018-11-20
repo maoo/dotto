@@ -1,0 +1,91 @@
+<alfresco-config>
+
+   <!-- Global config section -->
+   <config replace="true">
+      <flags>
+         <!-- Disable developer mode -->
+         <client-debug>false</client-debug>
+         <client-debug-autologging>false</client-debug-autologging>
+      </flags>
+   </config>
+
+   <!-- Enable production mode -->
+   <config evaluator="string-compare" condition="WebFramework">
+      <web-framework>
+         <autowire>
+            <mode>production</mode>
+         </autowire>
+         <module-deployment>
+            <mode>manual</mode>
+            <enable-auto-deploy-modules>true</enable-auto-deploy-modules>
+         </module-deployment>
+      </web-framework>
+   </config>
+
+    <config evaluator="string-compare" condition="DocumentLibrary">
+		<!-- Limit upload on share - TODO - test it -->
+		<file-upload>
+			<maximum-file-size-limit>52428800</maximum-file-size-limit>
+		</file-upload>
+
+		<!-- Google Docs™ integration  -->
+		<!-- <google-docs>
+			<enabled>false</enabled>
+			<creatable-types>
+			<creatable type="doc">application/vnd.openxmlformats-officedocument.wordprocessingml.document</creatable>
+			<creatable type="xls">application/vnd.openxmlformats-officedocument.spreadsheetml.sheet</creatable>
+			<creatable type="ppt">application/vnd.ms-powerpoint</creatable>
+			</creatable-types>
+		</google-docs> -->
+    </config>
+
+	<config evaluator='node-type' condition='cm:content'>
+		<forms>
+			<form>
+				<field-visibility>
+					<show id='kb:documentRef' />
+					<show id="dotto:invoiceId"/>
+					<show id="dotto:invoiceStatus"/>
+					<show id="dotto:invoiceResponses"/>
+					<show id="dotto:archiveId"/>
+					<show id="dotto:archiveStatus"/>
+					<show id="dotto:archiveResponses"/>
+				</field-visibility>
+			</form>
+		</forms>
+	</config>
+
+	<!-- Actions -->
+	<config evaluator="string-compare" condition="DocLibActions">
+		<actions>
+			<action id="dotto-invoice" type="javascript" label="actions.dotto.invoice" icon="dotto-invoice">
+				<param name="function">onActionSimpleRepoAction</param>
+				<permissions>
+					<permission allow="true">Write</permission>
+				</permissions>
+				<param name="action">invoice-action</param>
+				<param name="successMessage">message.dotto.invoice.submitted</param>
+				<param name="failureMessage">message.dotto.invoice.failure</param>
+			</action>
+			<action id="dotto-archive" type="javascript" label="actions.dotto.archive" icon="dotto-archive">
+				<param name="function">onActionSimpleRepoAction</param>
+				<permissions>
+					<permission allow="true">Write</permission>
+				</permissions>
+				<param name="action">archive-action</param>
+				<param name="successMessage">message.dotto.archive.submitted</param>
+				<param name="failureMessage">message.dotto.archive.failure</param>
+			</action>
+		</actions>
+		<actionGroups>
+			<actionGroup id="document-browse">
+				<action index="500" id="dotto-invoice" />
+				<action index="510" id="dotto-archive" />
+			</actionGroup>
+			<actionGroup id="document-details">
+				<action index="500" id="dotto-invoice" />
+				<action index="510" id="dotto-archive" />
+			</actionGroup>
+		</actionGroups>
+	</config>
+</alfresco-config>
