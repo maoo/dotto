@@ -24,11 +24,19 @@
         <maven.compiler.source>1.7</maven.compiler.source>
         <maven.compiler.target>1.7</maven.compiler.target>
         <env>local</env>
+        <!-- Release configuration -->
+        <release.goals></release.goals>
+        <github.global.server>github</github.global.server>
+        <github.oauth.token>${env.GH_TOKEN}</github.oauth.token>
     </properties>
 
-    <!-- Libs used in Unit and Integration tests -->
-    <!-- IMPORTANT - Test dependencies need to be here in the top parent POM as
-                     the Alfresco Maven IT Mojo runs as part of the parent project ... -->
+    <scm>
+        <connection>scm:git:git://github.com/maoo/dotto.git</connection>
+        <developerConnection>scm:git:git@github.com:maoo/dotto.git</developerConnection>
+        <url>https://github.com/maoo/dotto</url>
+        <tag>HEAD</tag>
+    </scm>
+
     <dependencies>
         <dependency>
             <groupId>junit</groupId>
@@ -131,6 +139,17 @@
     <build>
         <pluginManagement>
             <plugins>
+                <plugin>
+                  <groupId>org.apache.maven.plugins</groupId>
+                  <artifactId>maven-release-plugin</artifactId>
+                  <version>2.5.3</version>
+                  <configuration>
+                    <autoVersionSubmodules>true</autoVersionSubmodules>
+                    <useReleaseProfile>false</useReleaseProfile>
+                    <releaseProfiles>release</releaseProfiles>
+                    <goals>${release.goals}</goals>
+                  </configuration>
+                </plugin>
                 <!--
                     Build an AMP if 3rd party libs are needed by the extensions
                     JARs are the default artifact produced in your modules, if you want to build an amp for each module
