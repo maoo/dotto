@@ -15,6 +15,11 @@ script:
   - mv $DISTRO_PATH/platform.war $DISTRO_PATH/alfresco.war
   - zip -r $DISTRO_PATH.zip $DISTRO_PATH
 
+cache:
+  directories:
+  - .autoconf
+  - $HOME/.m2
+
 jdk:
   # - oraclejdk8
   - openjdk11
