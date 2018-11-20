@@ -29,5 +29,3 @@ deploy:
   api_key: "$GH_TOKEN"
   file: "$DISTRO_PATH.zip"
   skip_cleanup: true
-  on:
-    tags: true
