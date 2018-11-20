@@ -1,9 +1,9 @@
 language: java
 install: true
 
-# env:
-#   global:
-#   -
+env:
+  global:
+  - DISTRO_PATH=./target/dotto-distro-$(mvn -q -Dexec.executable=echo -Dexec.args='${project.version}' --non-recursive exec:exec)
 
 script:
   - mvn clean install
@@ -20,7 +20,7 @@ deploy:
   # Deploy binaries to OpenShift
   - provider: script
     skip_cleanup: true
-    script: export DISTRO_PATH=./target/dotto-distro-$(mvn -q -Dexec.executable=echo -Dexec.args='${project.version}' --non-recursive exec:exec) && mvn alfresco:run -Dmaven.alfresco.startTomcat=false && mkdir -p $DISTRO_PATH && mv target/*.war $DISTRO_PATH && mv $DISTRO_PATH/platform.war $DISTRO_PATH/alfresco.war && zip -r $DISTRO_PATH.zip $DISTRO_PATH
+    script: mvn alfresco:run -Dmaven.alfresco.startTomcat=false && mkdir -p $DISTRO_PATH && mv target/*.war $DISTRO_PATH && mv $DISTRO_PATH/platform.war $DISTRO_PATH/alfresco.war && zip -r $DISTRO_PATH.zip $DISTRO_PATH
     on:
       tags: true
   - provider: releases
