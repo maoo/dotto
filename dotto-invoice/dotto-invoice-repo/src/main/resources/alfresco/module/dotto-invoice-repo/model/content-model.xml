@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<model name="dotto:contentModel" xmlns="http://www.alfresco.org/model/dictionary/1.0">
+    <description>Dotto Document Model</description>
+    <author>Session Technologies</author>
+    <version>1.0</version>
+
+    <imports>
+        <import uri="http://www.alfresco.org/model/dictionary/1.0" prefix="d"/>
+        <import uri="http://www.alfresco.org/model/content/1.0" prefix="cm"/>
+        <import uri="http://www.alfresco.org/model/system/1.0" prefix="sys"/>
+    </imports>
+
+    <namespaces>
+        <namespace uri="https://session.it/dotto/model/content/1.0" prefix="dotto"/>
+    </namespaces>
+
+    <constraints>
+        <constraint name="dotto:invoiceStatusOptions" type="LIST">
+            <parameter name="allowedValues">
+                <list>
+                    <value></value>
+                    <value>Not Processed</value>
+                    <value>Failed</value>
+                    <value>Processed</value>
+                    <value>Invoiced</value>
+                </list>
+            </parameter>
+        </constraint>
+    </constraints>
+
+    <aspects>
+        <aspect name="dotto:invoiceable">
+            <title>Dotto Invoiceable</title>
+            <description>Document involved in Dotto invoicing process</description>
+            <properties>
+                <property name="dotto:invoiceStatus">
+                    <type>d:text</type>
+                    <default>Not Processed</default>
+                    <index enabled="true">
+                        <atomic>true</atomic>
+                        <stored>false</stored>
+                        <tokenised>false</tokenised>
+                    </index>
+                    <constraints>
+                        <constraint ref="dotto:invoiceStatusOptions"/>
+                    </constraints>
+                </property>
+            </properties>
+            <associations>
+                <association name="dotto:notifications">
+                    <title>Invoice notifications</title>
+                    <source>
+                        <mandatory>false</mandatory>
+                        <many>false</many>
+                    </source>
+                    <target>
+                        <class>cm:content</class>
+                        <mandatory>false</mandatory>
+                        <many>true</many>
+                    </target>
+                </association>
+            </associations>
+        </aspect>
+    </aspects>
+</model>

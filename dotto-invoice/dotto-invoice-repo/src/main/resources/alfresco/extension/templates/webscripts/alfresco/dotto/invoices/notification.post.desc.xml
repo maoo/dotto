@@ -1,0 +1,8 @@
+<webscript>
+    <shortname>Dotto invoice notification archival Webscript</shortname>
+    <description>Attaches a notification to an invoice</description>
+    <url>/dotto/invoices/notification/{invoiceid}</url>
+    <authentication>user</authentication>
+    <format default="json"></format>
+    <lifecycle>sample</lifecycle>
+</webscript>

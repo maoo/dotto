@@ -1,0 +1,57 @@
+<alfresco-config>
+
+	<config evaluator="string-compare" condition="DocumentLibrary">
+        <aspects>
+            <visible>
+                <aspect name="dotto:invoiceable" />
+            </visible>
+            <addable></addable>
+            <removeable></removeable>
+        </aspects>
+    </config>
+
+	<config evaluator='aspect' condition='dotto:invoiceable'>
+		<forms>
+			<form>
+				<field-visibility>
+					<show id="dotto:invoiceStatus"/>
+					<show id="dotto:notifications"/>
+				</field-visibility>
+				<!-- <appearance>
+					<field id="dotto:notifications">
+						<control>
+							<control-param name="displayMode">items</control-param>
+							<control-param name="showTargetLink">true</control-param>
+							<control-param name="compactMode">true</control-param>
+						</control>
+					</field>
+				</appearance> -->
+			</form>
+		</forms>
+	</config>
+
+	<!-- Actions -->
+	<config evaluator="string-compare" condition="DocLibActions">
+		<actions>
+			<action id="dotto-invoice" type="javascript" label="Fattura elettronica" icon="dotto-invoice">
+			<!-- TODO - Fix i18n -->
+			<!-- <action id="dotto-invoice" type="javascript" label="actions.dotto.invoice" icon="dotto-invoice"> -->
+				<param name="function">onActionSimpleRepoAction</param>
+				<permissions>
+					<permission allow="true">Write</permission>
+				</permissions>
+				<param name="action">invoice-action</param>
+				<param name="successMessage">message.dotto.invoice.submitted</param>
+				<param name="failureMessage">message.dotto.invoice.failure</param>
+			</action>
+		</actions>
+		<actionGroups>
+			<actionGroup id="document-browse">
+				<action index="500" id="dotto-invoice" />
+			</actionGroup>
+			<actionGroup id="document-details">
+				<action index="500" id="dotto-invoice" />
+			</actionGroup>
+		</actionGroups>
+	</config>
+</alfresco-config>

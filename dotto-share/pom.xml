@@ -13,9 +13,6 @@
         <version>0.0.1</version>
     </parent>
 
-    <properties>
-    </properties>
-
     <!-- Following dependencies are needed for compiling Java code in src/main/java;
          <scope>provided</scope> is inherited for each of the following;
          for more info, please refer to alfresco-platform-distribution POM -->

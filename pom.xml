@@ -150,31 +150,14 @@
                     <goals>${release.goals}</goals>
                   </configuration>
                 </plugin>
-                <!--
-                    Build an AMP if 3rd party libs are needed by the extensions
-                    JARs are the default artifact produced in your modules, if you want to build an amp for each module
-                    you have to enable this plugin and inspect the src/main/assembly.xml file if you want to customize
-                    the layout of your AMP. The end result is that Maven will produce both a JAR file and an AMP with your
-                    module.
-                -->
-                <!--
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-assembly-plugin</artifactId>
                     <version>2.6</version>
-                    <executions>
-                        <execution>
-                            <id>build-amp-file</id>
-                            <phase>package</phase>
-                            <goals>
-                                <goal>single</goal>
-                            </goals>
-                            <configuration>
-                                <appendAssemblyId>false</appendAssemblyId>
-                                <descriptor>src/main/assembly/amp.xml</descriptor>
-                            </configuration>
-                        </execution>
-                    </executions>
+                    <configuration>
+                        <appendAssemblyId>false</appendAssemblyId>
+                        <descriptor>src/main/assembly/amp.xml</descriptor>
+                    </configuration>
                     <dependencies>
                         <dependency>
                             <groupId>org.alfresco.maven.plugin</groupId>
@@ -183,7 +166,6 @@
                         </dependency>
                     </dependencies>
                 </plugin>
-                -->
 
                 <!-- Filter resources in any sub-project with this config -->
                 <plugin>
@@ -298,7 +280,7 @@
                         <!-- Bring in custom Modules -->
                         <moduleDependency>
                             <groupId>${project.groupId}</groupId>
-                            <artifactId>dotto-repo</artifactId>
+                            <artifactId>dotto-invoice-repo</artifactId>
                             <version>${project.version}</version>
                         </moduleDependency>
 
@@ -320,6 +302,11 @@
                         <moduleDependency>
                             <groupId>${project.groupId}</groupId>
                             <artifactId>dotto-share</artifactId>
+                            <version>${project.version}</version>
+                        </moduleDependency>
+                        <moduleDependency>
+                            <groupId>${project.groupId}</groupId>
+                            <artifactId>dotto-invoice-share</artifactId>
                             <version>${project.version}</version>
                         </moduleDependency>
                     </shareModules>
@@ -401,7 +388,7 @@
         </pluginRepository>
     </pluginRepositories>
 
-      <profiles>
+    <profiles>
         <profile>
             <id>it</id>
             <modules>
@@ -410,8 +397,8 @@
         </profile>
     </profiles>
 
-  <modules>
-    <module>dotto-repo</module>
-    <module>dotto-share</module>
-  </modules>
+    <modules>
+        <module>dotto-share</module>
+        <module>dotto-invoice</module>
+    </modules>
 </project>
