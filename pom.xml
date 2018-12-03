@@ -422,7 +422,7 @@
     </profiles>
 
     <modules>
-        <!-- <module>dotto-commons</module> -->
+        <module>dotto-commons</module>
         <module>dotto-share</module>
         <module>dotto-invoice</module>
     </modules>
