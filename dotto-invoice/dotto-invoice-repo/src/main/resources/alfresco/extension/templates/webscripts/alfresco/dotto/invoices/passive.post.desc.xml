@@ -1,7 +1,7 @@
 <webscript>
     <shortname>Dotto passive invoice Webscript</shortname>
     <description>Stores a passive invoice into Dotto</description>
-    <url>/dotto/invoices/passive</url>
+    <url>/dotto/invoices/passive/{companyname}</url>
     <authentication>user</authentication>
     <format default="json"></format>
     <lifecycle>sample</lifecycle>

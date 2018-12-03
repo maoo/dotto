@@ -3,7 +3,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>it.session</groupId>
     <artifactId>dotto</artifactId>
-    <version>0.0.1</version>
+    <version>0.0.2</version>
     <name>Dotto</name>
     <description>Dotto - Document platform based on Alfresco</description>
     <packaging>pom</packaging>
@@ -132,6 +132,18 @@
                 <artifactId>spring-surf-api</artifactId>
                 <version>${alfresco.surf.version}</version>
                 <scope>provided</scope>
+            </dependency>
+            <dependency>
+                <groupId>de.fmaul</groupId>
+                <artifactId>javascript-console-repo</artifactId>
+                <version>0.6</version>
+                <type>amp</type>
+            </dependency>
+            <dependency>
+                <groupId>de.fmaul</groupId>
+                <artifactId>javascript-console-share</artifactId>
+                <version>0.6</version>
+                <type>amp</type>
             </dependency>
         </dependencies>
     </dependencyManagement>
@@ -284,6 +296,13 @@
                             <version>${project.version}</version>
                         </moduleDependency>
 
+                        <moduleDependency>
+                            <groupId>de.fmaul</groupId>
+                            <artifactId>javascript-console-repo</artifactId>
+                            <version>0.6</version>
+                            <type>amp</type>
+                        </moduleDependency>
+
                         <!-- Bring in the integration tests -->
                         <!-- <moduleDependency>
                             <groupId>${project.groupId}</groupId>
@@ -291,7 +310,6 @@
                             <version>${project.version}</version>
                             <classifier>tests</classifier>
                         </moduleDependency> -->
-
                     </platformModules>
 
                     <!--
@@ -308,6 +326,12 @@
                             <groupId>${project.groupId}</groupId>
                             <artifactId>dotto-invoice-share</artifactId>
                             <version>${project.version}</version>
+                        </moduleDependency>
+                        <moduleDependency>
+                            <groupId>de.fmaul</groupId>
+                            <artifactId>javascript-console-share</artifactId>
+                            <version>0.6</version>
+                            <type>amp</type>
                         </moduleDependency>
                     </shareModules>
                 </configuration>
@@ -398,6 +422,7 @@
     </profiles>
 
     <modules>
+        <!-- <module>dotto-commons</module> -->
         <module>dotto-share</module>
         <module>dotto-invoice</module>
     </modules>

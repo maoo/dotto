@@ -1,7 +1,7 @@
 <webscript>
     <shortname>Dotto Pending Invoices Webscript</shortname>
     <description>Returns a list of Dotto documents (NodeRefs) that represent invoices pending submission</description>
-    <url>/dotto/invoices/pending</url>
+    <url>/dotto/invoices/pending/{companyname}</url>
     <authentication>user</authentication>
     <format default="json"></format>
     <lifecycle>sample</lifecycle>    

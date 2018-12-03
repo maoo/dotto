@@ -10,30 +10,17 @@
     <parent>
         <groupId>it.session</groupId>
         <artifactId>dotto</artifactId>
-        <version>0.0.1</version>
+        <version>0.0.2</version>
     </parent>
 
     <!-- Following dependencies are needed for compiling Java code in src/main/java;
          <scope>provided</scope> is inherited for each of the following;
          for more info, please refer to alfresco-platform-distribution POM -->
     <dependencies>
-        <!-- https://mvnrepository.com/artifact/javax.servlet/javax.servlet-api -->
         <dependency>
-            <groupId>javax.servlet</groupId>
-            <artifactId>javax.servlet-api</artifactId>
-            <version>3.1.0</version>
-            <scope>provided</scope>
-        </dependency>
-
-        <dependency>
-            <groupId>${alfresco.groupId}</groupId>
-            <artifactId>share</artifactId>
-            <classifier>classes</classifier>
-        </dependency>
-
-        <dependency>
-            <groupId>org.alfresco.surf</groupId>
-            <artifactId>spring-surf-api</artifactId>
+            <groupId>it.session</groupId>
+            <artifactId>dotto-commons</artifactId>
+            <version>0.0.2</version>
         </dependency>
     </dependencies>
 

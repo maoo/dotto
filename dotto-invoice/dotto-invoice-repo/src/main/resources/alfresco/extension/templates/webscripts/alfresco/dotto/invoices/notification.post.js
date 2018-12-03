@@ -1,14 +1,22 @@
 var now = new Date();
 var datePath = "/" + now.getFullYear() + '/' + now.getMonth() + "/" + now.getDate();
+var status = url.templateArgs.status;
+var companyName = url.templateArgs.companyname;
+var filename = url.templateArgs.filename;
 
+// Identify Dotto root folder for notifications - notificationsRootFolder
 var ctxt = Packages.org.springframework.web.context.ContextLoader.getCurrentWebApplicationContext();
 var properties =  ctxt.getBean('global-properties', java.util.Properties);
-var notificationsRootPath = properties["dotto.invoice.notifications.path"];
-var notificationsParentPath = notificationsRootPath + datePath;
-var pathArray = notificationsParentPath.split("/");
+var dottoRootFolder = properties["dotto.invoice.root.folder"];
+var notificationsRootFolder = companyhome;
+if (dottoRootFolder) {
+  notificationsRootFolder = companyhome.childByNamePath(dottoRootFolder);
+}
 
 // Force creation of notification folder
-var notificationsParentFolder = companyhome;
+var notificationsPath = companyName + "/" + properties["dotto.invoice.notifications.folder"]  + datePath;
+var pathArray = notificationsPath.split("/");
+var notificationsParentFolder = notificationsRootFolder;
 for each (var pathItem in pathArray) {
     if (notificationsParentFolder.childByNamePath(pathItem) == null) {
         notificationsParentFolder = notificationsParentFolder.createFolder(pathItem);
@@ -38,8 +46,15 @@ if (file.filename == "") {
   notification.save();
 }
 
-// Updating invoice status
-var invoiceId = url.templateArgs.invoiceid;
-var invoice = search.findNode("workspace://SpacesStore/"+invoiceId);
+// Updating invoice status and link notification to invoice
+var filename = url.templateArgs.filename;
+
+var query = {
+  query: "dotto:invoiceName:'" + filename + "'",
+  store: "workspace://SpacesStore",
+  language: "fts-alfresco"
+};
+var invoice = search.query(query)[0];
+invoice.properties["dotto:invoiceStatus"] = status;
 invoice.createAssociation(notification, 'dotto:notifications');
 invoice.save();

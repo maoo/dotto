@@ -14,6 +14,7 @@
 		<forms>
 			<form>
 				<field-visibility>
+					<show id="dotto:invoiceName"/>
 					<show id="dotto:invoiceStatus"/>
 					<show id="dotto:notifications"/>
 				</field-visibility>
@@ -33,9 +34,7 @@
 	<!-- Actions -->
 	<config evaluator="string-compare" condition="DocLibActions">
 		<actions>
-			<action id="dotto-invoice" type="javascript" label="Fattura elettronica" icon="dotto-invoice">
-			<!-- TODO - Fix i18n -->
-			<!-- <action id="dotto-invoice" type="javascript" label="actions.dotto.invoice" icon="dotto-invoice"> -->
+			<action id="dotto-invoice" type="javascript" label="actions.dotto.invoice" icon="dotto-invoice">
 				<param name="function">onActionSimpleRepoAction</param>
 				<permissions>
 					<permission allow="true">Write</permission>

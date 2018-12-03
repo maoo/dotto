@@ -5,7 +5,7 @@
                 http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
 
    <!-- Add module specific messages and labels -->
-   <bean id="it.session.dotto-share.resources"
+   <bean id="it.session.dotto-invoice-share.resources"
          class="org.springframework.extensions.surf.util.ResourceBundleBootstrapComponent">
       <property name="resourceBundles">
          <list>
@@ -13,4 +13,15 @@
          </list>
       </property>
    </bean>
+
+   <!-- <bean id="webscripts.resources"
+         class="org.alfresco.i18n.ResourceBundleBootstrapComponent">
+      <property name="resourceBundles">
+         <list>
+            <value>alfresco.messages.webscripts</value>
+            <value>alfresco.messages.slingshot</value>
+            <value>alfresco.web-extension.messages.dotto-invoice-share</value>
+         </list>
+      </property>
+   </bean> -->
 </beans>

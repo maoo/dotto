@@ -3,11 +3,6 @@
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xsi:schemaLocation="http://www.springframework.org/schema/beans
                 http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
-   
-   <!-- Override Locale Resolver, force lang to "it" -->
-  <bean id="localeResolver" class="it.session.dotto.share.CustomLocaleResolver">
-      <constructor-arg index="0" value="it"/>
-  </bean>
 
    <!-- Add module specific messages and labels -->
    <bean id="it.session.dotto-share.resources"

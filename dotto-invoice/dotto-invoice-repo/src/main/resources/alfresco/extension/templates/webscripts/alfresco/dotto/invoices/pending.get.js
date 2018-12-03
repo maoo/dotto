@@ -1,25 +1,31 @@
-// var sort1 = 
-// { 
-//   column: "@{http://www.alfresco.org/model/content/1.0}modified", 
-//   ascending: false 
-// }; 
-
-// var sort2 = 
-// { 
-//   column: "@{http://www.alfresco.org/model/content/1.0}created", 
-//   ascending: false
-// };
+var sort = { 
+  column: "@{http://www.alfresco.org/model/content/1.0}created", 
+  ascending: false
+};
 
 var paging = { 
   maxItems: 1000,
   skipCount: 0
 };
 
+var companyName = url.templateArgs.companyname;
+var ctxt = Packages.org.springframework.web.context.ContextLoader.getCurrentWebApplicationContext();
+var properties =  ctxt.getBean('global-properties', java.util.Properties);
+
+var dottoRootFolder = properties["dotto.invoice.root.folder"];
+var pendingRootFolder = companyhome;
+if (dottoRootFolder) {
+  pendingRootFolder = companyhome.childByNamePath(dottoRootFolder);
+}
+
+var activeInvoicePath = pendingRootFolder.qnamePath + "/cm:" + companyName + "/" + properties["dotto.invoice.active.path"];
+var pathQuery = "PATH:'"+ activeInvoicePath + "//*'";
+
 var def = {
-    query: "dotto:invoiceStatus:'Not Processed'",
+    query: pathQuery + "AND dotto:invoiceStatus:'in_attesa'",
     store: "workspace://SpacesStore",
     language: "fts-alfresco",
-    // sort: [sort1, sort2],
+    sort: [sort],
     page: paging 
 };
 model["results"] = search.query(def);

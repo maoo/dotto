@@ -1,19 +1,25 @@
 var now = new Date();
 var datePath = "/" + now.getFullYear() + '/' + now.getMonth() + "/" + now.getDate();
+var companyName = url.templateArgs.companyname;
 
+// Identify Dotto root folder for passive invoices - passiveRootFolder
+// TODO - put in common with notification.post.js
 var ctxt = Packages.org.springframework.web.context.ContextLoader.getCurrentWebApplicationContext();
 var properties =  ctxt.getBean('global-properties', java.util.Properties);
-var passiveInvoiceRootPath = properties["dotto.invoice.passiveInvoices.path"];
-var passiveInvoicePath = passiveInvoiceRootPath + datePath;
-var pathArray = passiveInvoicePath.split("/");
+var dottoRootFolder = properties["dotto.invoice.root.folder"];
+var passiveRootFolder = companyhome;
+if (dottoRootFolder) {
+  passiveRootFolder = companyhome.childByNamePath(dottoRootFolder);
+}
 
-// Force creation of notification folder
-var passiveInvoiceFolder = companyhome;
-for each (var pathItem in pathArray) {
-    if (passiveInvoiceFolder.childByNamePath(pathItem) == null) {
-        passiveInvoiceFolder = passiveInvoiceFolder.createFolder(pathItem);
+// Force creation of passive folder
+var passivePath = companyName + "/" + properties["dotto.invoice.passive.folder"]  + datePath;
+var passiveParentFolder = passiveRootFolder;
+for each (var pathItem in passivePath.split("/")) {
+    if (passiveParentFolder.childByNamePath(pathItem) == null) {
+      passiveParentFolder = passiveParentFolder.createFolder(pathItem);
     } else {
-        passiveInvoiceFolder = passiveInvoiceFolder.childByNamePath(pathItem);
+      passiveParentFolder = passiveParentFolder.childByNamePath(pathItem);
     }
 }
 
@@ -32,7 +38,7 @@ if (file.filename == "") {
   status.redirect = true;
 } else {
   // create document in company home from uploaded file
-  invoice = passiveInvoiceFolder.createFile(file.filename);
+  invoice = passiveParentFolder.createFile(file.filename);
   invoice.properties.content.guessMimetype(file.filename);
   invoice.properties.content.write(file.content);
   invoice.save();

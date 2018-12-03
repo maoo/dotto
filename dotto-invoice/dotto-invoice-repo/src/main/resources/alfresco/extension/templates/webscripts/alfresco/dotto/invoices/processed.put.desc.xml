@@ -1,7 +1,7 @@
 <webscript>
     <shortname>Dotto Processed Invoices Webscript</shortname>
     <description>Sets the invoice status to "processed", given the invoice ID</description>
-    <url>/dotto/invoices/processed/{invoiceid}</url>
+    <url>/dotto/invoices/processed/{invoiceid}/{filename}</url>
     <authentication>user</authentication>
     <format default="json"></format>
     <lifecycle>sample</lifecycle>    
