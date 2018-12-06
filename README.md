@@ -38,6 +38,9 @@ TODO - gestire workflow fatture scartate
 To mark an invoice as processed, given a `$FILE_NAME`, invoke:
 `curl -X POST -F file=@alfresco.log http://admin:admin@localhost:8080/alfresco/service/dotto/invoices/notification/$STATUS/$COMPANY_NAME/$FILE_NAME`
 
+TODO - status is not set
+TODO - add links to notifications
+
 If all goes fine, you'll get the following result:
 ```
 { "result": "200" }

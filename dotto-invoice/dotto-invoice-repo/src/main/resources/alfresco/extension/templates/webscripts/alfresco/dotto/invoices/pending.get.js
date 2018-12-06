@@ -22,7 +22,7 @@ var activeInvoicePath = pendingRootFolder.qnamePath + "/cm:" + companyName + "/"
 var pathQuery = "PATH:'"+ activeInvoicePath + "//*'";
 
 var def = {
-    query: pathQuery + "AND dotto:invoiceStatus:'in_attesa'",
+    query: pathQuery + " AND dotto:invoiceStatus:'in_attesa'",
     store: "workspace://SpacesStore",
     language: "fts-alfresco",
     sort: [sort],

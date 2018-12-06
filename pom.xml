@@ -281,6 +281,8 @@
                         (i.e. alfresco.war)
                     -->
                     <platformModules>
+                        <!-- TODO add alfresco-aos-module -->
+                        
                         <!-- Share Services will be ignored if you are on Platform earlier than 5.1 -->
                         <moduleDependency>
                             <groupId>${alfresco.groupId}</groupId>

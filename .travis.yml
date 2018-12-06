@@ -11,13 +11,14 @@ script:
   # Building the Alfresco Repo and Share WAR files
   - mvn alfresco:run -Dmaven.alfresco.startTomcat=false
   # Building the Dotto Invoice AMP files
-  - cd dotto-invoice/dotto-invoice-repo ; mvn assembly:single ; cd -
-  - cd dotto-invoice/dotto-invoice-share ; mvn assembly:single ; cd -
+  - cd dotto-invoice/dotto-invoice-repo ; mvn package assembly:single ; cd -
+  - cd dotto-invoice/dotto-invoice-share ; mvn package assembly:single ; cd -
   # Moving files to the DISTRO_PATH, ready for GitHub release
   - mkdir -p $DISTRO_PATH && mv target/*.war $DISTRO_PATH
   - mv $DISTRO_PATH/platform.war $DISTRO_PATH/alfresco.war
   - mv dotto-invoice/dotto-invoice-repo/target/dotto-invoice-repo*.amp $DISTRO_PATH
   - mv dotto-invoice/dotto-invoice-share/target/dotto-invoice-share*.amp $DISTRO_PATH
+
 cache:
   directories:
   - .autoconf

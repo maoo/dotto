@@ -1,5 +1,5 @@
 var now = new Date();
-var datePath = "/" + now.getFullYear() + '/' + now.getMonth() + "/" + now.getDate();
+var datePath = "/" + now.getFullYear() + '/' + now.getMonth()+1 + "/" + now.getDate();
 var status = url.templateArgs.status;
 var companyName = url.templateArgs.companyname;
 var filename = url.templateArgs.filename;
@@ -18,6 +18,7 @@ var notificationsPath = companyName + "/" + properties["dotto.invoice.notificati
 var pathArray = notificationsPath.split("/");
 var notificationsParentFolder = notificationsRootFolder;
 for each (var pathItem in pathArray) {
+    logger.system.out("Checking "+pathItem + " on nodeRef "+notificationsParentFolder);
     if (notificationsParentFolder.childByNamePath(pathItem) == null) {
         notificationsParentFolder = notificationsParentFolder.createFolder(pathItem);
     } else {
@@ -49,12 +50,23 @@ if (file.filename == "") {
 // Updating invoice status and link notification to invoice
 var filename = url.templateArgs.filename;
 
+var activeInvoicePath = notificationsRootFolder.qnamePath + "/cm:" + companyName + "/" + properties["dotto.invoice.active.path"];
+var pathQuery = "PATH:'"+ activeInvoicePath + "//*'";
+
 var query = {
-  query: "dotto:invoiceName:'" + filename + "'",
+  query: pathQuery + " AND dotto:invoiceName:'" + filename + "'",
   store: "workspace://SpacesStore",
   language: "fts-alfresco"
 };
+
+logger.system.out("Running query...");
+logger.system.out(query);
+
 var invoice = search.query(query)[0];
+
+logger.system.out("Found invoice: "+invoice);
+logger.system.out("Setting status: "+status);
+
 invoice.properties["dotto:invoiceStatus"] = status;
 invoice.createAssociation(notification, 'dotto:notifications');
 invoice.save();
