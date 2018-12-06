@@ -18,7 +18,7 @@
 					<show id="dotto:invoiceStatus"/>
 					<show id="dotto:notifications"/>
 				</field-visibility>
-				<!-- <appearance>
+				<appearance>
 					<field id="dotto:notifications">
 						<control>
 							<control-param name="displayMode">items</control-param>
@@ -26,7 +26,7 @@
 							<control-param name="compactMode">true</control-param>
 						</control>
 					</field>
-				</appearance> -->
+				</appearance>
 			</form>
 		</forms>
 	</config>

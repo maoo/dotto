@@ -15,7 +15,9 @@ var properties =  ctxt.getBean('global-properties', java.util.Properties);
 var dottoRootFolder = properties["dotto.invoice.root.folder"];
 var pendingRootFolder = companyhome;
 if (dottoRootFolder) {
-  pendingRootFolder = companyhome.childByNamePath(dottoRootFolder);
+  for each (var pathItem in dottoRootFolder.split("/")) {
+    pendingRootFolder = pendingRootFolder.childByNamePath(pathItem);
+  }
 }
 
 var activeInvoicePath = pendingRootFolder.qnamePath + "/cm:" + companyName + "/" + properties["dotto.invoice.active.path"];

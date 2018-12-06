@@ -59,14 +59,15 @@ var query = {
   language: "fts-alfresco"
 };
 
-logger.system.out("Running query...");
-logger.system.out(query);
+// logger.system.out("Running query...");
+// logger.system.out(query);
 
 var invoice = search.query(query)[0];
 
-logger.system.out("Found invoice: "+invoice);
-logger.system.out("Setting status: "+status);
+// logger.system.out("Found invoice: "+invoice);
+logger.system.out("Setting status: '"+status+"'");
 
 invoice.properties["dotto:invoiceStatus"] = status;
+invoice.save();
 invoice.createAssociation(notification, 'dotto:notifications');
 invoice.save();
