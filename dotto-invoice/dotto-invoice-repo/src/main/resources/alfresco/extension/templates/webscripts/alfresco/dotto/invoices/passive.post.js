@@ -1,5 +1,6 @@
 var now = new Date();
-var datePath = "/" + now.getFullYear() + '/' + now.getMonth()+1 + "/" + now.getDate();
+var month = parseInt(now.getMonth())+1;
+var datePath = "/" + now.getFullYear() + '/' + month + "/" + now.getDate();
 var companyName = url.templateArgs.companyname;
 
 // Identify Dotto root folder for passive invoices - passiveRootFolder

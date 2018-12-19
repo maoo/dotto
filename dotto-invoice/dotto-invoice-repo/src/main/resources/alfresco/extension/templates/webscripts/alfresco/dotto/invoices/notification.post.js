@@ -1,5 +1,7 @@
 var now = new Date();
-var datePath = "/" + now.getFullYear() + '/' + now.getMonth()+1 + "/" + now.getDate();
+var month = parseInt(now.getMonth())+1;
+var datePath = "/" + now.getFullYear() + '/' + month + "/" + now.getDate();
+
 var status = url.templateArgs.status;
 var companyName = url.templateArgs.companyname;
 var filename = url.templateArgs.filename;
@@ -43,6 +45,9 @@ if (file.filename == "") {
   // create document in company home from uploaded file
   notification = notificationsParentFolder.createFile(file.filename);
   notification.properties.content.guessMimetype(file.filename);
+  if (notification.properties.content.mimetype == "application/octet-stream") {
+    notification.properties.content.mimetype = "text/html";
+  }
   notification.properties.content.write(file.content);
   notification.save();
 }
@@ -60,12 +65,12 @@ var query = {
 };
 
 // logger.system.out("Running query...");
-// logger.system.out(query);
+// logger.system.out(pathQuery + " AND dotto:invoiceName:'" + filename + "'");
 
 var invoice = search.query(query)[0];
 
 // logger.system.out("Found invoice: "+invoice);
-logger.system.out("Setting status: '"+status+"'");
+// logger.system.out("Setting status: '"+status+"'");
 
 invoice.properties["dotto:invoiceStatus"] = status;
 invoice.save();
