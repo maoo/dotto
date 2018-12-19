@@ -40,7 +40,8 @@ if (file.filename == "") {
 } else {
   // create document in company home from uploaded file
   invoice = passiveParentFolder.createFile(file.filename);
-  invoice.properties.content.guessMimetype(file.filename);
   invoice.properties.content.write(file.content);
+  invoice.properties.content.mimetype = "text/html";
+  // invoice.properties.content.guessMimetype(file.filename);
   invoice.save();
 }

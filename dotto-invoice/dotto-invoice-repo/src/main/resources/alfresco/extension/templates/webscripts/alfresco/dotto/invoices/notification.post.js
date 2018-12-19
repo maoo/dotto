@@ -44,11 +44,9 @@ if (file.filename == "") {
 } else {
   // create document in company home from uploaded file
   notification = notificationsParentFolder.createFile(file.filename);
-  notification.properties.content.guessMimetype(file.filename);
-  if (notification.properties.content.mimetype == "application/octet-stream") {
-    notification.properties.content.mimetype = "text/html";
-  }
   notification.properties.content.write(file.content);
+  notification.properties.content.mimetype = "text/html";
+  // notification.properties.content.guessMimetype(file.filename);
   notification.save();
 }
 
