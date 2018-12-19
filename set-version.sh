@@ -7,5 +7,3 @@ if [ -z "$NEW_VERSION" ]; then
 fi
 
 mvn versions:set -DgenerateBackupPoms=false -DnewVersion=$NEW_VERSION
-
-mvn versions:set -DgenerateBackupPoms=false -DnewVersion=0.0.2
