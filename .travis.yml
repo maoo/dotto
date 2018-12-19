@@ -17,7 +17,7 @@ script:
   # Moving files to the DISTRO_PATH, ready for GitHub release
   - mkdir -p $DISTRO_PATH && mv target/*.war $DISTRO_PATH
   - mv $DISTRO_PATH/platform.war $DISTRO_PATH/alfresco.war
-  - mv dotto-share/target/dotto-invoice-repo*.amp $DISTRO_PATH
+  - mv dotto-share/target/dotto-share*.amp $DISTRO_PATH
   - mv dotto-invoice/dotto-invoice-repo/target/dotto-invoice-repo*.amp $DISTRO_PATH
   - mv dotto-invoice/dotto-invoice-share/target/dotto-invoice-share*.amp $DISTRO_PATH
 
