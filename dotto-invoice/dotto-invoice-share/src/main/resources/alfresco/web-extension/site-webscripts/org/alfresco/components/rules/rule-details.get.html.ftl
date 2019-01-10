@@ -20,7 +20,6 @@ MAO - Copied from ./target/share-war/WEB-INF/classes/alfresco/site-webscripts/or
    <!--MAO - Custom javascript file include for detail mode -->
    <@script type="text/javascript" src="${url.context}/res/components/dotto/rules/config/rule-config-action-custom.js" group="rules_custom"></@script>
 </@>
-</@>
 
 <@markup id="widgets">
    <@createWidgets group="rules"/>
