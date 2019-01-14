@@ -9,14 +9,14 @@
     <parent>
         <groupId>it.session</groupId>
         <artifactId>dotto-invoice</artifactId>
-        <version>0.0.5</version>
+        <version>0.0.6</version>
     </parent>
 
     <dependencies>
         <dependency>
             <groupId>it.session</groupId>
             <artifactId>dotto-commons</artifactId>
-            <version>0.0.5</version>
+            <version>0.0.6</version>
         </dependency>
     </dependencies>
 </project>
