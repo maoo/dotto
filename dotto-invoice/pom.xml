@@ -3,7 +3,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>it.session</groupId>
     <artifactId>dotto-invoice</artifactId>
-    <version>0.0.6</version>
+    <version>0.0.7</version>
     <name>Dotto Invoice</name>
     <description>Dotto Invoice plugin</description>
     <packaging>pom</packaging>
@@ -11,7 +11,7 @@
     <parent>
         <groupId>it.session</groupId>
         <artifactId>dotto</artifactId>
-        <version>0.0.6</version>
+        <version>0.0.7</version>
     </parent>
 
     <modules>

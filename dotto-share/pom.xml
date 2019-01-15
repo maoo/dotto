@@ -10,19 +10,19 @@
     <parent>
         <groupId>it.session</groupId>
         <artifactId>dotto</artifactId>
-        <version>0.0.6</version>
+        <version>0.0.7</version>
     </parent>
 
     <!-- Following dependencies are needed for compiling Java code in src/main/java;
          <scope>provided</scope> is inherited for each of the following;
          for more info, please refer to alfresco-platform-distribution POM -->
-    <dependencies>
+    <!-- <dependencies>
         <dependency>
             <groupId>it.session</groupId>
             <artifactId>dotto-commons</artifactId>
             <version>0.0.6</version>
         </dependency>
-    </dependencies>
+    </dependencies> -->
 
     <build>
         <plugins>
