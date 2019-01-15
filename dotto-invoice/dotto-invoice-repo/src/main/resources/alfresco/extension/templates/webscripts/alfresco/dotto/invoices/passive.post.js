@@ -44,4 +44,5 @@ if (file.filename == "") {
   invoice.properties.content.mimetype = "text/html";
   // invoice.properties.content.guessMimetype(file.filename);
   invoice.save();
+  logger.system.out("Got passive invoice '" + file.filename + "', mimetype is set to '"+invoice.properties.content.mimetype+"'");
 }
