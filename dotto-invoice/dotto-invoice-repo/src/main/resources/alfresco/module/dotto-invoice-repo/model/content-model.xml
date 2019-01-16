@@ -44,7 +44,7 @@
                 </property>
                 <property name="dotto:invoiceStatus">
                     <type>d:text</type>
-                    <default>not_processed</default>
+                    <default>in_attesa</default>
                     <index enabled="true">
                         <atomic>true</atomic>
                         <stored>false</stored>
