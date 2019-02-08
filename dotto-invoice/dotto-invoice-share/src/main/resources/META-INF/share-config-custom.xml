@@ -42,14 +42,29 @@
 				<param name="action">invoice-action</param>
 				<param name="successMessage">message.dotto.invoice.submitted</param>
 				<param name="failureMessage">message.dotto.invoice.failure</param>
+				<!-- TODO - still not working -->
+				<!-- <evaluator>evaluator.doclib.action.invoiceButtonEnabled</evaluator> -->
+			</action>
+			<action id="dotto-invoice-processed" type="javascript" label="actions.dotto.invoice.processed" icon="dotto-invoice">
+				<param name="function">onActionSimpleRepoAction</param>
+				<permissions>
+					<permission allow="true">Write</permission>
+				</permissions>
+				<param name="action">invoice-processed-action</param>
+				<param name="successMessage">message.dotto.invoice.processed</param>
+				<param name="failureMessage">message.dotto.invoice.processed.failure</param>
+				<!-- TODO - still not working -->
+				<!-- <evaluator>evaluator.doclib.action.processedButtonEnabled</evaluator> -->
 			</action>
 		</actions>
 		<actionGroups>
 			<actionGroup id="document-browse">
 				<action index="500" id="dotto-invoice" />
+				<action index="501" id="dotto-invoice-processed" />
 			</actionGroup>
 			<actionGroup id="document-details">
 				<action index="500" id="dotto-invoice" />
+				<action index="501" id="dotto-invoice-processed" />
 			</actionGroup>
 		</actionGroups>
 	</config>

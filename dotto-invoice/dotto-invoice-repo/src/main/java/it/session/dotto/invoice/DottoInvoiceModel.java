@@ -10,4 +10,6 @@ public class DottoInvoiceModel  {
 
 	public static final String INVOICE_STATUS_NOT_PROCESSED = "in_attesa";
 	public static final String INVOICE_STATUS_FAILED = "scartata";
+
+	public static final String PROP_INVOICE_PROCESSED = "invoiceProcessed";
 }

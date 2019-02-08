@@ -27,14 +27,11 @@ public class SubmitInvoiceAction extends ActionExecuterAbstractBase {
 
 	public SubmitInvoiceAction(NodeService nodeService) {
 		this.nodeService = nodeService;
-		logger.debug("SubmitInvoiceAction constructor invoked");
 	}
 
 	@Override
 	protected void executeImpl(Action action, NodeRef actionedUponNodeRef) {
 	    String status = (String)action.getParameterValue(DottoInvoiceModel.PROP_INVOICE_STATUS);
-		logger.debug("SubmitInvoiceAction invoked on nodeRef "+actionedUponNodeRef.toString());
-		logger.debug("Doc status: "+status);
 		// Check if status is ok, otherwise skip the action and log something
 	    if (status == null || this.allowedStatuses.contains(status)) {
 			Map<QName, Serializable> properties = nodeService.getProperties(actionedUponNodeRef);
@@ -51,13 +48,8 @@ public class SubmitInvoiceAction extends ActionExecuterAbstractBase {
 				QName.createQName(
 					DottoInvoiceModel.NAMESPACE_DOTTO_CONTENT_MODEL,
 					DottoInvoiceModel.PROP_INVOICE_STATUS), DottoInvoiceModel.INVOICE_STATUS_NOT_PROCESSED);
-			logger.debug(
-				"SubmitInvoiceAction - Status set to " +
-				DottoInvoiceModel.INVOICE_STATUS_NOT_PROCESSED);
-
 			nodeService.setProperties(actionedUponNodeRef,properties);
 		} else {
-			// TODO - give some visual feedback to user, ie throwing exception
 			logger.info("Skipping SubmitInvoiceAction execution, due to status: " + status);
 		}
 	}

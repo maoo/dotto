@@ -7,4 +7,8 @@
     <bean id="invoice-action" class="it.session.dotto.invoice.actions.SubmitInvoiceAction" parent="action-executer">
         <constructor-arg index="0" ref="NodeService"/>
     </bean>
+
+    <bean id="invoice-processed-action" class="it.session.dotto.invoice.actions.MarkInvoiceAsProcessedAction" parent="action-executer">
+        <constructor-arg index="0" ref="NodeService"/>
+    </bean>
 </beans>

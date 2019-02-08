@@ -9,14 +9,21 @@
     <parent>
         <groupId>it.session</groupId>
         <artifactId>dotto-invoice</artifactId>
-        <version>0.0.8</version>
+        <version>0.0.9</version>
     </parent>
 
-    <!-- <dependencies>
+    <dependencies>
         <dependency>
+            <groupId>${alfresco.groupId}</groupId>
+            <artifactId>share</artifactId>
+            <version>${alfresco.share.version}</version>
+            <classifier>classes</classifier>
+            <scope>provided</scope>
+        </dependency>
+        <!-- <dependency>
             <groupId>it.session</groupId>
             <artifactId>dotto-commons</artifactId>
             <version>0.0.6</version>
-        </dependency>
-    </dependencies> -->
+        </dependency> -->
+    </dependencies>
 </project>

@@ -480,7 +480,11 @@
                
                // Dotto: add invoicing status in list
                if (jsNode.hasAspect("dotto:invoiceable")) {
-                  desc += '<div class="detail"><span><b>Stato fattura:</b> '+jsNode.properties['dotto_invoiceStatus'] + '</b></span></div>';
+                  var processed = '';
+                  if (jsNode.properties['dotto_invoiceProcessed']) {
+                     processed = '<span>&nbsp;<b>(Processato)</b></span>';
+                  }
+                  desc += '<div class="detail"><span><b>Stato fattura:</b> '+jsNode.properties['dotto_invoiceStatus'] + '</b></span>' + processed + '</div>';
                }
             }
 

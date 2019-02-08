@@ -54,6 +54,14 @@
                         <constraint ref="dotto:invoiceStatusOptions"/>
                     </constraints>
                 </property>
+                <property name="dotto:invoiceProcessed">
+                    <type>d:boolean</type>
+                    <index enabled="true">
+                        <atomic>true</atomic>
+                        <stored>false</stored>
+                        <tokenised>false</tokenised>
+                    </index>
+                </property>
             </properties>
             <associations>
                 <association name="dotto:notifications">

@@ -11,7 +11,7 @@
     <parent>
         <groupId>it.session</groupId>
         <artifactId>dotto</artifactId>
-        <version>0.0.8</version>
+        <version>0.0.9</version>
     </parent>
 
     <properties>
@@ -23,7 +23,7 @@
         <dependency>
             <groupId>it.session</groupId>
             <artifactId>dotto-invoice-repo</artifactId>
-            <version>0.0.8</version>
+            <version>0.0.9</version>
             <scope>test</scope>
         </dependency>
     </dependencies>
