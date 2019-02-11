@@ -482,7 +482,7 @@
                if (jsNode.hasAspect("dotto:invoiceable")) {
                   var processed = '';
                   if (jsNode.properties['dotto_invoiceProcessed']) {
-                     processed = '<span>&nbsp;<b>(Processato)</b></span>';
+                     processed = '<span>&nbsp;<b>(Registrata)</b></span>';
                   }
                   desc += '<div class="detail"><span><b>Stato fattura:</b> '+jsNode.properties['dotto_invoiceStatus'] + '</b></span>' + processed + '</div>';
                }
