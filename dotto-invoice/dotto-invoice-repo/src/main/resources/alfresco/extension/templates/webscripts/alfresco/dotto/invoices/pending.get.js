@@ -16,6 +16,7 @@ var dottoRootFolder = properties["dotto.invoice.root.folder"];
 var pendingRootFolder = companyhome;
 if (dottoRootFolder) {
   for each (var pathItem in dottoRootFolder.split("/")) {
+    logger.system.out("INFO - Looking for Dotto Invoice root folder, navigating to "+pathItem);
     pendingRootFolder = pendingRootFolder.childByNamePath(pathItem);
   }
 }
