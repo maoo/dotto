@@ -16,6 +16,7 @@
 				<field-visibility>
 					<show id="dotto:invoiceName"/>
 					<show id="dotto:invoiceStatus"/>
+					<show id="dotto:invoiceMessage"/>
 					<show id="dotto:notifications"/>
 				</field-visibility>
 				<appearance>

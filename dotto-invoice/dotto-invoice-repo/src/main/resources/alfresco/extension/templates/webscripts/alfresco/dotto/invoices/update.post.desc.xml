@@ -1,0 +1,8 @@
+<webscript>
+    <shortname>Dotto Update Invoice Webscript</shortname>
+    <description>Sets the invoice status to a given state, given the invoice ID and state to set</description>
+    <url>/dotto/invoices/update/{invoiceid}/{state}</url>
+    <authentication>user</authentication>
+    <format default="json"></format>
+    <lifecycle>sample</lifecycle>    
+</webscript>

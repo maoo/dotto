@@ -33,6 +33,19 @@ If all goes fine, you'll get the following result:
 { "result": "200" }
 ```
 
+### Update invoice state
+Similar to processed, to mark an invoice with any of the available states, invoke:
+
+```
+export STATE=errore_conversione
+curl -X POST -H "Content-Type: application/json" http://admin:admin@localhost:8080/alfresco/service/dotto/invoices/update/$INVOICE_ID/$STATE
+```
+
+If all goes fine, you'll get the following result:
+```
+{ "result": "200" }
+```
+
 TODO - gestire workflow fatture scartate
 ### Attach notification to an existing invoice
 To mark an invoice as processed, given a `$FILE_NAME`, invoke:
@@ -48,7 +61,11 @@ If all goes fine, you'll get the following result:
 
 ### Store a passive invoice in Dotto
 To store a passive invoice in Dotto, invoke:
-`curl -X POST -F file=@alfresco.log http://admin:admin@localhost:8080/alfresco/service/dotto/invoices/passive/$COMPANY_NAME`
+```
+export INVOICE_NAME=test
+export COMPANY_NAME=RagSoc1
+curl -X POST -F file=@alfresco.log http://admin:admin@localhost:8080/alfresco/service/dotto/invoices/passive/$COMPANY_NAME/$INVOICE_NAME
+```
 
 If all goes fine, you'll get the following result:
 ```

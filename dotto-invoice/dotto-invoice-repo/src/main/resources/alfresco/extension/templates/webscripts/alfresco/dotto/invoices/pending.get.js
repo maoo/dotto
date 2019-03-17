@@ -22,10 +22,11 @@ if (dottoRootFolder) {
 }
 
 var activeInvoicePath = pendingRootFolder.qnamePath + "/cm:" + companyName + "/" + properties["dotto.invoice.active.path"];
-var pathQuery = "PATH:'"+ activeInvoicePath + "//*'";
+var pathQuery = "PATH:'"+ activeInvoicePath + "//*' AND dotto:invoiceStatus:'in_attesa'";
+logger.system.out("INFO - Searching for... "+pathQuery);
 
 var def = {
-    query: pathQuery + " AND dotto:invoiceStatus:'in_attesa'",
+    query: pathQuery,
     store: "workspace://SpacesStore",
     language: "fts-alfresco",
     sort: [sort],
