@@ -1,5 +1,6 @@
 var now = new Date();
 var year = now.getFullYear();
+var companyName = url.templateArgs.companyname;
 
 // Identify Dotto root folder for reports
 var ctxt = Packages.org.springframework.web.context.ContextLoader.getCurrentWebApplicationContext();
@@ -11,7 +12,7 @@ if (dottoRootFolder) {
 }
 
 // Force creation of report folder
-var reportsPath = properties["dotto.report.root.folder"] + "/" + year;
+var reportsPath = properties["dotto.report.root.folder"] + "/" + companyName + "/" + year;
 var pathArray = reportsPath.split("/");
 var reportsParentFolder = reportsRootFolder;
 for each(var pathItem in pathArray) {

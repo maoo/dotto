@@ -1,7 +1,7 @@
 <webscript>
     <shortname>Dotto report archival Webscript</shortname>
     <description>Upload a report</description>
-    <url>/dotto/invoices/report</url>
+    <url>/dotto/invoices/report/{companyname}</url>
     <authentication>user</authentication>
     <format default="json"></format>
     <lifecycle>sample</lifecycle>
