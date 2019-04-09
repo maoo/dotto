@@ -3,7 +3,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>it.session</groupId>
     <artifactId>dotto</artifactId>
-    <version>0.0.11</version>
+    <version>0.0.12</version>
     <name>Dotto</name>
     <description>Dotto - Document platform based on Alfresco</description>
     <packaging>pom</packaging>
