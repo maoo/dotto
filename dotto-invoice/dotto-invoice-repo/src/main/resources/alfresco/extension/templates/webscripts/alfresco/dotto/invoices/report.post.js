@@ -12,7 +12,7 @@ if (dottoRootFolder) {
 }
 
 // Force creation of report folder
-var reportsPath = properties["dotto.report.root.folder"] + "/" + companyName + "/" + year;
+var reportsPath = companyName + "/" + properties["dotto.report.root.folder"] + "/" + year;
 var pathArray = reportsPath.split("/");
 var reportsParentFolder = reportsRootFolder;
 for each(var pathItem in pathArray) {
